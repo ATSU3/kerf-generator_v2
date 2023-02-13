@@ -1,0 +1,26 @@
+body {
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  margin: 30px;
+}
+
+.h {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}
+.h form {
+  text-align: center;
+}
+.h .sample-text {
+  text-align: center;
+}
+.h .sample-note {
+  font-size: 11px;
+  color: red;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */

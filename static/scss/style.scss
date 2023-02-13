@@ -1,0 +1,32 @@
+body {
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    margin: 30px;
+}
+
+.h {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+
+    form {
+        text-align: center;
+    }
+
+    .sample {
+        &-text {
+            text-align: center;
+        }
+
+        &-note {
+            font-size: 11px;
+            color: red;
+            text-align: center;
+        }
+    }
+
+}
