@@ -2,67 +2,78 @@
 <html lang="ja">
 
 <head>
-    <title>Kerf Check</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="static/js/call_svc.js"></script>
-    <link rel="stylesheet" href="../static/css/style.css">
+  <title>Kerf Check</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/style.css">
+  <!-- <script src="static/js/call_svc.js"></script> -->
+  <script src="static/js/vue.js"></script>
+  <script src="static/js/app.js" defer></script>
+
 </head>
 
 <body>
-    <h2>Kerf Check Parts Generator</h2>
-    <div class="h" id="js">
+  <div class="container">
+    <div class="mb-5">
+      <h2>Kerf Check Parts Generator</h2>
+    </div>
+    <div id="app-1">
+      <div class="h" id="js">
         <form name="par_form">
-            <br>
-            <table>
-                <tr>
-                    <th>基準幅(start-width):</th>
-                    <th><input type="text" name="form_st" size="4" value="14"></th>
-                    <th>mm</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>刻み幅(pitch):</th>
-                    <th><input type="text" name="form_inc" size="4" value="0.05"></th>
-                    <th>mm</th>
-                    <!-- <th>(1/100単位までしか設定できません。It can only set up to 1 / 100mm.)</th> -->
-                </tr>
-                <tr>
-                    <th>隙間(gap):</th>
-                    <th><input type="text" name="form_gap" size="4" value="20"></th>
-                    <th>mm</th>
-                </tr>
-                <tr>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>個数(number-of-kerfs):</th>
-                    <th><input type="text" name="form_lp" size="4" value="4"></th>
-                    <th>個(step)</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <th>刃径 (blade-diameter)</th>
-                    <th><input type="text" name="form_tbone" size="4" value="12.7"></th>
-                    <th>mm(R)</th>
-                    <th></th>
-                </tr>
-            </table>
-            <br>
-            <br>
-            <!-- <input id="bt" type="button" value="Create SVG" onclick="calsvg()"> -->
-            <input id="bt" type="button" value="Create SVG" onclick="call_kerf_check()">
+          <br>
+          <table>
+            <tr>
+              <th>基準幅(start-width):</th>
+              <th><input type="text" name="form_st" size="4" value="14"></th>
+              <th>mm</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>刻み幅(pitch):</th>
+              <th><input type="text" name="form_inc" size="4" value="0.05"></th>
+              <th>mm</th>
+            </tr>
+            <tr>
+              <th>隙間(gap):</th>
+              <th><input type="text" name="form_gap" size="4" value="20"></th>
+              <th>mm</th>
+            </tr>
+            <tr>
+              <th></th>
+            </tr>
+            <tr>
+              <th>個数(number-of-kerfs):</th>
+              <th><input type="text" name="form_lp" size="4" value="4"></th>
+              <th>個</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th>刃径 (blade-diameter)</th>
+              <th><input type="text" name="form_tbone" size="4" value="12.7"></th>
+              <th>mm</th>
+              <th></th>
+            </tr>
+          </table>
+          <br>
+          <br>
+          <button type="button" v-on:click="createSVG">
+            Create SVG
+          </button>
         </form>
-        <div class="sample">
-            <h4 class="sample-text">Kerf Sample</h4>
-            <p class="sample-note">刻み幅(pitch)は1/100単位までしか設定できません。(pitch) can only set up to 1 / 100mm.</p>
-            <img class="sample-img" src="../static/img/t-bone-kerf-fixed.svg" alt="svg">
-        </div>
+      </div>
+
+      <div v-if="clicked && success">
+        <h4>Click the image to download</h4>
         <!-- <a id="download" href="#" download="kerf_check.svg" onclick="handleDownload()">download</a> -->
+        <!-- <a id="download" href="#" download="kerf_check.svg"><img id="result" /></a> -->
+        <a v-bind:href="downloadURL" download="kerf_check.svg"><img v-bind:src="downloadURL" /></a>
+      </div>
+      <div v-else-if="clicked">
+        <hr />
+        [[ errorMessage ]]
+      </div>
     </div>
-    <div>
-        <a id="download" href="#" download="kerf_check.svg"><img id="result"></a>
-    </div>
+  </div>
 </body>
 
 </html>
