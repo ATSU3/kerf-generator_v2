@@ -20,7 +20,7 @@ def kerf_check():
     tbone = json["tbone"]
 
     if abs(inc) < 0.01:
-        return "(pitch) is too small. The tick width can only be set to 1/100 mm increments. (刻み幅)は1/100mm単位までしか設定できません。", 500
+        return "(pitch) is too small. (pitch) can only be set to 1/100 mm increments. (刻み幅)は1/100mm単位までしか設定できません。", 500
 
     txt = generate_svg(stw, inc, gap, lp, tbone)
 
