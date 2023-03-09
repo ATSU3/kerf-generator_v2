@@ -64,8 +64,6 @@
 
       <div v-if="clicked && success">
         <h4>Click the image to download</h4>
-        <!-- <a id="download" href="#" download="kerf_check.svg" onclick="handleDownload()">download</a> -->
-        <!-- <a id="download" href="#" download="kerf_check.svg"><img id="result" /></a> -->
         <a v-bind:href="downloadURL" download="kerf_check.svg"><img v-bind:src="downloadURL" /></a>
       </div>
       <div v-else-if="clicked">
